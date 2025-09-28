@@ -1,7 +1,8 @@
 import getClientPromise from "@/lib/mongodb";
-import { NextApiRequest, NextApiResponse } from "next";
+import withCors from "@/lib/withCors";
+import { NextApiRequest, NextApiResponse } from "next"
 
-export default async function handler(
+async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse<any>
 ) {
@@ -36,3 +37,5 @@ export default async function handler(
 		res.status(500).json({ error: "Internal server error" });
 	}
 }
+
+export default withCors(handler)
