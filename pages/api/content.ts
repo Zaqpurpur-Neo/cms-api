@@ -28,13 +28,13 @@ async function handler(
 		const { slug } = req.query;
 
 		if (slug) {
-			const post = await db.collection("posts").findOne({ slug: String(slug) });
+			const post = await db.collection("post").findOne({ slug: String(slug) });
 
 			if (!post) return res.status(404).json({ error: "Post not found" });
 			return res.status(200).json(post);
 		} else {
 			const posts = await db
-				.collection("posts")
+				.collection("post")
           		.find({})
 				.toArray();
         	return res.status(200).json(posts);
