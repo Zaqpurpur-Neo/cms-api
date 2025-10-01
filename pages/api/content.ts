@@ -36,7 +36,6 @@ async function handler(
 			const posts = await db
 				.collection("posts")
           		.find({})
-          		.project({ contents: 0 })          		
 				.toArray();
         	return res.status(200).json(posts);
       	}
