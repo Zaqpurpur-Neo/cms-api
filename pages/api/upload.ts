@@ -1,5 +1,6 @@
 import getClientPromise from "@/lib/mongodb";
 import withCors from "@/lib/withCors";
+import { Post } from "@/types";
 import { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(
@@ -23,12 +24,17 @@ async function handler(
 		const client = await getClientPromise();
 		const db = client.db("cms");
 
-		const { slug, title, author, contents } = req.body;
+		const { slug, title, author, contents, coverImage, instagramUrl } = req.body as Post;
 		const now = new Date();
 		await db.collection("post").updateOne(
 			{ slug },
 			{
-				$set: { title, slug, author, contents, updatedAt: now },
+				$set: { 
+					title, slug, 
+					author, contents, 
+					coverImage, instagramUrl,
+					updatedAt: now 
+				},
 				$setOnInsert: { createdAt: now }
 			},
 			{ upsert: true }
