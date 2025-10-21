@@ -6,7 +6,7 @@ async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse<any>
 ) {
-	res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");
+	res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=60");
 
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
