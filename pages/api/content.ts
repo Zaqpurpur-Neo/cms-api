@@ -18,11 +18,10 @@ async function handler(
 
 	if(req.method !== "GET") 
 		return res.status(405).json({ error: "Method not allowed" });
-	/* disable auth for content
+	// disable auth for content
 	if(req.headers.authorization !== `Bearer ${process.env.ADMIN_KEY}`) {
 		return res.status(401).json({ error: "Unauthorized" })
 	}
-	*/
 
 	try {
 		const client = await getClientPromise();
